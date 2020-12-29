@@ -16,7 +16,7 @@ get-date
 #----------------Settings----------------#
 ${vms-all} = $clear
 #Exception
-${exceptions-subscriptions} = "Hamilton UK (Production)"
+${exceptions-subscriptions} = "Prod UK (Production)"
 
 
 #----------------Settings----------------#
@@ -34,13 +34,13 @@ function mail-notification {
     )
     $smtp = New-Object System.Net.Mail.SmtpClient
     $msg = New-Object System.Net.Mail.MailMessage
-    $msg.From = "notification@hamiltongroup.com"
+    $msg.From = "notification@maildomain.com"
     $mailto | % { $msg.to.Add($_) }
     $msg.subject = $subject
     $msg.body = $bodyemail
     if ($bodyashtml) { $msg.IsBodyHtml = $true }
     if ($attachments) { $msg.Attachments.add($attachments) }
-    $smtp.host = "mail.hamiltonbm.com"
+    $smtp.host = "mail.maildomain.com"
     $smtp.send($msg)
 }
 #----------------Functions----------------#
